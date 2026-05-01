@@ -1,3 +1,4 @@
+import { greet , add ,PI  } from "./utils";
 // console.log("\n=== Деструктуризация массивов ===");
 // const colors = ["red" , "green" , "blue"];
 // const color1 = colors[0];
@@ -71,9 +72,28 @@
 // console.log("второе число" , second) ;
 // console.log("остальные числа" , rest);
 //ЗАДАНИЕ 1 
-const arr1 = [1,2,3] ;
-const arr2 = [4,5,6]; 
-const arr3 = spread(arr1,arr2);
-function findMax(...numbers){
-    return max(numbers)
-};
+// const arr1 = [1,2,3] ;
+// const arr2 = [4,5,6]; 
+// const arr3 = [...arr1,...arr2];
+// function findMax(...numbers){
+//     return Math.max(...numbers);
+// };
+// const obj1 = { name: "Dinara" };
+// const obj2 = { age: 18 };
+// const obj3 = {...obj1 , ...obj2};
+// console.log("модули") ; 
+// console.log(greet("алексей")) ; 
+// console.log("5+3=", add(5,3));
+// import { multiply as умножить } from "./utils.js";
+// console.log("4*7" , умножить(4,7));
+// import * as Utils from "./utils.js";
+// console.log(Utils.greet("Мария"));
+// console.log("умножение" , Utils.multiply(3,9));
+
+
+import {square , cube , E} from "./math.js";
+console.log(square(3));
+console.log(cube(1));
+console.log(E);
+
+
