@@ -91,9 +91,80 @@ import { greet , add ,PI  } from "./utils";
 // console.log("умножение" , Utils.multiply(3,9));
 
 
-import {square , cube , E} from "./math.js";
-console.log(square(3));
-console.log(cube(1));
-console.log(E);
+// import {square , cube , E} from "./math.js";
+// console.log(square(3));
+// console.log(cube(1));
+// console.log(E);
 
+console.log("промисы");
+const simplePromise = new Promise((resolve , reject) =>{
+    const success = true ;
+    if(success){
+        resolve("операция выполнена успешно");
+    } else {
+        reject("произошла ошибка");
+    }
+});
+simplePromise
+.then((result) => console.log("результат" , result))
+.catch((error) => console.log("ошибка" , error ));
+function delay(ms){
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            resolve(`прошло ${ms} миллисекунд`);
+        } , ms);
+    });
+}
+delay(1000)
+.then((message) => console.log(message));
+function fetchUserData(userId){
+    return new Promise((resolve , reject) => {
+        setTimeout(()=>{
+            if(userId >0){
+                resolve ({
+                    id : userId , 
+                    name: "иван Иванов" , 
+                    email: "ivan@exaple.com",
+                });
+            }else {
+                reject("неверный id пользователя");
+            }
+        }, 1500);
+    })
+}
+fetchUserData(1)
+.then ((user) => console.log("пользователь" , user))
+.catch((error) => console.log("ошибка", error));
+function step1(){
+    return new Promise((resolve) =>{
+        setTimeout(() => resolve("шаг 1 заверше") , 500);
+    });
+}
+function step2(previousResult){
+    return new Promise((resolve) => {
+        setTimeout(()=> resolve(`${previousResult} -> шаг 2 завершен`) , 500);
+    });
+}
+function step3(previousResult){
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(`${previousResult} -> шаг 3 завершен`) , 500);
+    });
+}
+step1()
+.then((result1) => step2(result1))
+.then((result2) => step3(result2))
+.then((finalResult) => console.log("финальный результат" , finalResult))
+.catch((error) => console.log("ошибка в цепочке" , error));
 
+function checkInventory(Name) {
+    return new Promise((resolve, reject) => {
+        const inventory = ["Телефон", "Ноутбук", "Планшет"];
+        setTimeout(() => {
+            if (inventory.includes(Name)) {
+                resolve(`Товар ${Name} в наличии`);
+            } else {
+                reject(`Товар ${Name} не найден`);
+            }
+        }, 1000);
+    });
+}
